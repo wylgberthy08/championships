@@ -58,6 +58,17 @@ Certifique-se de ter os seguintes pré-requisitos instalados em sua máquina:
 ```bash
   npx expo start
  ```
+## Tecnologias e Ferramentas
+  ### React native
+  ### Expo
+  ### Typescript
+  ### styled-components
+  ### React navigation
+  ### Axios
+
+  ##### Os dados são consumidos através da api:
+  [Clique aqui para acessar a api](https://www.football-data.org/)
+  
 ## Telas
 ### HOME
  ![Alt text](https://raw.githubusercontent.com/wylgberthy08/championships/master/src/screenshots/home.png)
