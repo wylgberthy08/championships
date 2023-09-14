@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import {
+  BackButton,
   CompetitionName,
   Container,
   Header,
@@ -17,12 +18,15 @@ import {
   Text,
   View,
 } from "react-native";
-import { useRoute } from "@react-navigation/native";
+import { useRoute, useNavigation } from "@react-navigation/native";
 import { TableItem, getStandings } from "../../services/get-standings.service";
 import { PositionCard } from "../../components/PositionCard";
 
+import { Ionicons } from "@expo/vector-icons";
+
 export function Classification() {
   const route = useRoute();
+  const navigation = useNavigation();
   const { id, name }: any = route.params || {};
   const [classification, setClassification] = useState<TableItem[]>();
 
@@ -31,6 +35,11 @@ export function Classification() {
 
     setClassification(response.standings.flatMap((item) => item.table));
   }
+
+  function handleGoBack() {
+    navigation.goBack();
+  }
+
   useEffect(() => {
     fetchStandingsData(id);
   }, []);
@@ -46,6 +55,9 @@ export function Classification() {
   return (
     <Container>
       <Header>
+        <BackButton onPress={handleGoBack}>
+          <Ionicons name="arrow-back-outline" size={24} color="#fff" />
+        </BackButton>
         <CompetitionName>{name}</CompetitionName>
       </Header>
 

@@ -49,3 +49,9 @@ export const HeaderInfo = styled.Text`
   font-size: 14px;
   color: ${theme.colors.text_detail};
 `;
+
+export const BackButton = styled.TouchableOpacity`
+  margin-right: 10px;
+  align-items: center;
+  justify-content: center;
+`;
