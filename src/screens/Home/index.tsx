@@ -11,7 +11,6 @@ import { AuthContext } from "../../contexts/authContexts";
 
 export function Home() {
   const navigation = useNavigation();
-  const { user } = useContext(AuthContext);
 
   const { data, isLoading } = useQuery<CompetitionItem[]>(
     "competitions",
@@ -21,7 +20,6 @@ export function Home() {
   function handleNavigate(id: number, name: string) {
     navigation.navigate("CompetitionDetails", { id: id, name: name });
   }
-  
 
   if (isLoading) {
     return (
