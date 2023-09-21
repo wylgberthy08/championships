@@ -32,21 +32,28 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { Ionicons } from "@expo/vector-icons";
+import { useQuery } from "react-query";
 
 export function CompetitionDetails() {
   const route = useRoute();
   const navigation = useNavigation();
   const { id, name }: any = route.params || {};
 
-  const [matches, setMatches] = useState<MatchesProps[]>();
-  const [classification, setClassification] = useState<TableItem[]>();
-  const [topScorers, setTopScorers] = useState<Scorer[]>();
+  const { data, isLoading: loadMatches } = useQuery(["matches", id], () =>
+    getMatches(id)
+  );
+  const { data: classification, isLoading: loadClassification } = useQuery(
+    ["classification", id],
+    () => getStandings(id)
+  );
+  const { data: topScorers, isLoading: loadTopScorers } = useQuery(
+    ["top-scorers", id],
+    () => getScores(id)
+  );
 
-  async function fetchMatchesData(matchesId: number) {
-    const response = await getMatches(matchesId);
-
-    setMatches(response.matches);
-  }
+  const topTree = classification?.standings.flatMap((item) =>
+    item.table.slice(0, 3)
+  );
 
   function handleGoBack() {
     navigation.goBack();
@@ -56,28 +63,7 @@ export function CompetitionDetails() {
     navigation.navigate("Classification", { id: id, name: name });
   }
 
-  async function fetchScoresData(scoreId: number) {
-    const response = await getScores(scoreId);
-    setTopScorers(response.scorers);
-  }
-
-  async function fetchStandingsData(standingsId: number) {
-    const response = await getStandings(standingsId);
-    const topTree = response.standings.flatMap((item) =>
-      item.table.slice(0, 3)
-    );
-    setClassification(topTree);
-  }
-
-  useEffect(() => {
-    Promise.all([
-      fetchMatchesData(id),
-      fetchStandingsData(id),
-      fetchScoresData(id),
-    ]);
-  }, []);
-
-  if (!matches && !classification && !topScorers) {
+  if (loadMatches && loadClassification && loadTopScorers) {
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <ActivityIndicator color="#000" size={40} />
@@ -100,10 +86,10 @@ export function CompetitionDetails() {
           horizontal
           showsHorizontalScrollIndicator={false}
         >
-          {matches?.map((matche) => (
+          {data?.matches?.map((matche) => (
             <CardMatches
               key={matche.awayTeam.id}
-              score={matche.score}
+              score={matche?.score}
               awayTeam={matche.awayTeam}
               homeTeam={matche.homeTeam}
             />
@@ -122,7 +108,7 @@ export function CompetitionDetails() {
           </HeaderInfoView>
         </HeaderTable>
         <ScrollView>
-          {classification?.map((item) => (
+          {topTree?.map((item) => (
             <PositionCard key={item.team.id} data={item} />
           ))}
         </ScrollView>
@@ -135,7 +121,7 @@ export function CompetitionDetails() {
       <ScoresView>
         <Title>CHASERS</Title>
         <ScrollView horizontal>
-          {topScorers?.map((item) => (
+          {topScorers?.scorers?.map((item) => (
             <PlayerCard
               key={item.player.id}
               player={item.player}

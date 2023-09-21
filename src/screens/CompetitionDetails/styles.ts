@@ -8,7 +8,7 @@ export const Container = styled.ScrollView`
 
 export const Header = styled.View`
   width: 100%;
-  height: 80px;
+  height: 100px;
   flex-direction: row;
   align-items: center;
   padding: 20px;

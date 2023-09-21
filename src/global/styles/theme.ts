@@ -12,6 +12,7 @@ export default {
     line: "#ebebf6",
 
     main_light: "#fdedef",
+    error:'#ed281a',
 
     shape: "#e1e1e8",
     shape_dark: "#3D9298",

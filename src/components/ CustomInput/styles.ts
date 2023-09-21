@@ -3,7 +3,7 @@ import theme from "../../global/styles/theme";
 
 export const Container = styled.View`
   width: 100%;
-  height: 75px;
+  height: 90px;
 `;
 
 export const Input = styled.TextInput`
@@ -19,4 +19,9 @@ export const Label = styled.Text`
   color: ${theme.colors.text_detail};
   margin-bottom: 2px;
   margin-top: 20px;
+`;
+
+export const Error = styled.Text`
+color: ${theme.colors.error};
+margin-bottom: 10px;
 `;

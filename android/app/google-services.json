@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "946723271730",
+    "project_id": "championships-62446",
+    "storage_bucket": "championships-62446.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:946723271730:android:9b764defca45a57ef8f82b",
+        "android_client_info": {
+          "package_name": "com.championships"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUT67H3vsMW7nA_EpRcCddlnHRMQeubiI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
