@@ -65,21 +65,15 @@ Certifique-se de ter os seguintes pré-requisitos instalados em sua máquina:
   ### styled-components
   ### React navigation
   ### Axios
+  ### React-query
 
   ##### Os dados são consumidos através da api:
   [Clique aqui para acessar a api](https://www.football-data.org/)
   
 ## Telas
-### HOME
- ![Alt text](https://raw.githubusercontent.com/wylgberthy08/championships/master/src/screenshots/home.png)
+
+ ![Alt text](https://raw.githubusercontent.com/wylgberthy08/championships/master/src/screenshots/Telas.png)
  
-### DETALHES DO CAMPEONATO
- 
- ![Alt text](https://raw.githubusercontent.com/wylgberthy08/championships/master/src/screenshots/detalhes_do_campeonato.png)
- ![Alt text](https://raw.githubusercontent.com/wylgberthy08/championships/master/src/screenshots/detalhes_2.png)
-### TABELA DE CLASSIFICAÇÃO
- 
-  ![Alt text](https://raw.githubusercontent.com/wylgberthy08/championships/master/src/screenshots/tabela.png)
 
 ## Feedback 
 
