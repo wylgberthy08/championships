@@ -1,13 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 
 import { Container } from "./styles";
-import { ActivityIndicator, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, ScrollView, View } from "react-native";
 import { Competition, CompetitionItem } from "../../components/Competition";
 import { Header } from "../../components/Header";
 import { useNavigation } from "@react-navigation/native";
 import { getCompetitions } from "../../services/get-competitions.service";
 import { useQuery } from "react-query";
-import { AuthContext } from "../../contexts/authContexts";
 
 export function Home() {
   const navigation = useNavigation();

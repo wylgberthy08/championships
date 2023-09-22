@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import {
   AreaInput,
@@ -26,16 +26,17 @@ type FormDataProps = {
 };
 
 const signInSchema = yup.object({
-  email: yup.string().required("*Informe o e-email.").email("E-mail invalido"),
+  email: yup.string().required("*E-mail is required.").email("Invalid email"),
   password: yup
     .string()
-    .required("*Informe a senha.")
-    .min(6, "A senha deve ter pelo menos 6 digitos"),
+    .required("*Password is required.")
+    .min(6, "The password must have at least 6 digits."),
 });
 
 export function SignIn() {
   const navigation = useNavigation();
   const { signIn } = useContext(AuthContext);
+  const [error, setError] = useState("");
   const {
     control,
     handleSubmit,
@@ -45,7 +46,6 @@ export function SignIn() {
   });
 
   async function handleSignIn(data: FormDataProps) {
-    console.log(data);
     await signIn(data.email, data.password);
   }
 
@@ -70,7 +70,7 @@ export function SignIn() {
               placeholder="example@gmail.com"
               onChangeText={onChange}
               value={value}
-              error={errors.email?.message}
+              error={errors.email.message}
             />
           )}
         />
@@ -79,7 +79,7 @@ export function SignIn() {
           name="password"
           render={({ field: { onChange, value } }) => (
             <CustomInput
-              error={errors.password?.message}
+              error={errors.password.message}
               label="Password"
               placeholder="Enter Your Password"
               onChangeText={onChange}
@@ -98,12 +98,6 @@ export function SignIn() {
         <SocialLoginText>Or With</SocialLoginText>
         <Bar />
       </Wrapper>
-      <Button
-        icon={require("../../assets/FacebookLogo.svg")}
-        title="Login with Facebook"
-        type="contained"
-        style={{ marginBottom: 21 }}
-      />
       <Button
         icon={require("../../assets/GoogleLogo.svg")}
         title="Login"

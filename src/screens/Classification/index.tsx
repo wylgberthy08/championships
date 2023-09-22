@@ -11,40 +11,30 @@ import {
   TableView,
   Title,
 } from "./styles";
-import {
-  ActivityIndicator,
-  FlatList,
-  ScrollView,
-  Text,
-  View,
-} from "react-native";
+import { ActivityIndicator, FlatList, Text, View } from "react-native";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { TableItem, getStandings } from "../../services/get-standings.service";
 import { PositionCard } from "../../components/PositionCard";
 
 import { Ionicons } from "@expo/vector-icons";
+import { useQuery } from "react-query";
 
 export function Classification() {
   const route = useRoute();
   const navigation = useNavigation();
   const { id, name }: any = route.params || {};
-  const [classification, setClassification] = useState<TableItem[]>();
 
-  async function fetchStandingsData(standingsId: number) {
-    const response = await getStandings(standingsId);
+  const { data, isLoading } = useQuery(["classification", id], () =>
+    getStandings(id)
+  );
 
-    setClassification(response.standings.flatMap((item) => item.table));
-  }
+  const classification = data?.standings.flatMap((item) => item.table);
 
   function handleGoBack() {
     navigation.goBack();
   }
 
-  useEffect(() => {
-    fetchStandingsData(id);
-  }, []);
-
-  if (!classification) {
+  if (isLoading) {
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <ActivityIndicator color="#000" size={40} />
@@ -74,6 +64,7 @@ export function Classification() {
         </HeaderTable>
         <FlatList
           data={classification}
+          keyExtractor={(item) => String(item.team.id)}
           renderItem={({ item }) => <PositionCard data={item} />}
         />
       </TableView>

@@ -56,10 +56,8 @@ export function SignUp() {
   }
 
   async function handleSignUp(data: FormDataProps) {
-    console.log(data);
     await signUp(data.email, data.password, data.name);
   }
-
 
   return (
     <Container>
@@ -135,7 +133,6 @@ export function SignUp() {
         <SocialLoginText>Or With</SocialLoginText>
         <Bar />
       </Wrapper>
-  
 
       <LinkView onPress={handleNavigateToSignIn}>
         <Link color={theme.colors.header}>

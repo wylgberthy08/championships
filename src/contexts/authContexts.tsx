@@ -43,7 +43,7 @@ export function AuthProvider({ children }: Props) {
       setLoading(false);
     }
     loadStorage();
-    console.log("renderizou");
+    
   }, []);
 
   async function signUp(email: string, password: string, name: string) {
@@ -73,7 +73,10 @@ export function AuthProvider({ children }: Props) {
       })
       .catch((error) => {
         if (error.code === "auth/invalid-email") {
-          console.log("Endereço de e-mail inválido");
+          return "Endereço de e-mail inválido";
+        }
+        if (error.code === "auth/email-already-in-use") {
+          return "Endereço de e-mail já existe";
         } else {
           console.log(error);
         }
@@ -100,7 +103,6 @@ export function AuthProvider({ children }: Props) {
         storageUser(data);
       })
       .catch((err) => {
-        console.log(err);
         setLoadingAuth(false);
       });
   }

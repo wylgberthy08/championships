@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 
 import {
   ButtonFooter,
@@ -15,13 +15,13 @@ import {
   ScoresView,
   BackButton,
 } from "./styles";
-import { ActivityIndicator, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, ScrollView, View } from "react-native";
 import { getMatches } from "../../services/get-matches.service";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { CardMatches, MatchesProps } from "../../components/CardMatches";
+import { CardMatches } from "../../components/CardMatches";
 import { PositionCard } from "../../components/PositionCard";
-import { TableItem, getStandings } from "../../services/get-standings.service";
-import { Scorer, getScores } from "../../services/get-scores.service";
+import {  getStandings } from "../../services/get-standings.service";
+import {  getScores } from "../../services/get-scores.service";
 import { PlayerCard } from "../../components/PlayerCard";
 
 import Animated, {
