@@ -30,7 +30,7 @@ export const AuthContext = createContext<ResponseContext>(
 
 export function AuthProvider({ children }: Props) {
   const [user, setUser] = useState<UserProps | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [loadingAuth, setLoadingAuth] = useState(false);
 
   useEffect(() => {
@@ -43,7 +43,6 @@ export function AuthProvider({ children }: Props) {
       setLoading(false);
     }
     loadStorage();
-    
   }, []);
 
   async function signUp(email: string, password: string, name: string) {
@@ -73,12 +72,13 @@ export function AuthProvider({ children }: Props) {
       })
       .catch((error) => {
         if (error.code === "auth/invalid-email") {
-          return "Endereço de e-mail inválido";
+          return console.log("Endereço de e-mail inválido");
         }
         if (error.code === "auth/email-already-in-use") {
-          return "Endereço de e-mail já existe";
+          return console.log("Endereço de e-mail já existe");
         } else {
           console.log(error);
+          setLoadingAuth(false);
         }
         setLoadingAuth(false);
       });
@@ -102,7 +102,8 @@ export function AuthProvider({ children }: Props) {
         setUser(data);
         storageUser(data);
       })
-      .catch((err) => {
+      .catch((err) => {})
+      .finally(() => {
         setLoadingAuth(false);
       });
   }

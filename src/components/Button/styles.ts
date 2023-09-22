@@ -18,7 +18,7 @@ export const ButtonView = styled.TouchableOpacity<TypeButton>`
   height: 48px;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   padding: 8px;
   background-color: ${({ type = "outlined" }) =>
     type === "contained" ? theme.colors.shape_dark : "#fff"};

@@ -44,7 +44,7 @@ export const Bar = styled.View`
 export const LinkView = styled.TouchableOpacity`
   width: 100%;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 35px;
 `;
 
 interface PropsLink {

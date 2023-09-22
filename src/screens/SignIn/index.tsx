@@ -1,15 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 
-import {
-  AreaInput,
-  Bar,
-  Container,
-  Link,
-  LinkView,
-  SocialLoginText,
-  Title,
-  Wrapper,
-} from "./styles";
+import { AreaInput, Container, Link, LinkView, Title } from "./styles";
 import { Image } from "expo-image";
 import { CustomInput } from "../../components/ CustomInput";
 import { Button } from "../../components/Button";
@@ -35,8 +26,7 @@ const signInSchema = yup.object({
 
 export function SignIn() {
   const navigation = useNavigation();
-  const { signIn } = useContext(AuthContext);
-  const [error, setError] = useState("");
+  const { signIn, loadingAuth } = useContext(AuthContext);
   const {
     control,
     handleSubmit,
@@ -70,7 +60,7 @@ export function SignIn() {
               placeholder="example@gmail.com"
               onChangeText={onChange}
               value={value}
-              error={errors.email.message}
+              error={errors.email?.message}
             />
           )}
         />
@@ -79,7 +69,7 @@ export function SignIn() {
           name="password"
           render={({ field: { onChange, value } }) => (
             <CustomInput
-              error={errors.password.message}
+              error={errors.password?.message}
               label="Password"
               placeholder="Enter Your Password"
               onChangeText={onChange}
@@ -89,19 +79,10 @@ export function SignIn() {
         />
       </AreaInput>
       <Button
+        isLoading={loadingAuth}
         onPress={handleSubmit(handleSignIn)}
         title="Login"
         type="contained"
-      />
-      <Wrapper>
-        <Bar />
-        <SocialLoginText>Or With</SocialLoginText>
-        <Bar />
-      </Wrapper>
-      <Button
-        icon={require("../../assets/GoogleLogo.svg")}
-        title="Login"
-        type="outlined"
       />
 
       <LinkView onPress={handleNavigateToSignUp}>

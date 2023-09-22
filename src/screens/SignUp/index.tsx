@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import {
   AreaInput,
@@ -42,7 +42,7 @@ const signUpSchema = yup.object({
 
 export function SignUp() {
   const navigation = useNavigation();
-  const { signUp } = useContext(AuthContext);
+  const { signUp, loadingAuth } = useContext(AuthContext);
   const {
     control,
     handleSubmit,
@@ -51,12 +51,16 @@ export function SignUp() {
     resolver: yupResolver(signUpSchema),
   });
 
+  const [loading, setLoading] = useState(loadingAuth);
+
   function handleNavigateToSignIn() {
     navigation.navigate("SignIn");
   }
 
   async function handleSignUp(data: FormDataProps) {
+    setLoading(true);
     await signUp(data.email, data.password, data.name);
+    setLoading(false);
   }
 
   return (
@@ -124,20 +128,16 @@ export function SignUp() {
         />
       </AreaInput>
       <Button
+        isLoading={loading}
         onPress={handleSubmit(handleSignUp)}
         title="SignUp"
         type="contained"
       />
-      <Wrapper>
-        <Bar />
-        <SocialLoginText>Or With</SocialLoginText>
-        <Bar />
-      </Wrapper>
 
       <LinkView onPress={handleNavigateToSignIn}>
         <Link color={theme.colors.header}>
           Already have an account?
-          <Link color="#2F89FC">Login</Link>
+          <Link color="#2F89FC"> Login</Link>
         </Link>
       </LinkView>
     </Container>

@@ -23,25 +23,6 @@ export const AreaInput = styled.View`
   margin-bottom: 50px;
 `;
 
-export const Wrapper = styled.View`
-  width: 100%;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-top: 18px;
-`;
-export const SocialLoginText = styled.Text`
-  color: ${theme.colors.title};
-  background-color: #fff;
-  padding: 10px;
-`;
-export const Bar = styled.View`
-  width: 140px;
-  height: 1px;
-  z-index: 0;
-  background-color: ${theme.colors.shape_dark};
-`;
-
 export const LinkView = styled.TouchableOpacity`
   width: 100%;
   align-items: center;
