@@ -5,7 +5,9 @@
 Bem-vindo ao nosso aplicativo de futebol, a sua fonte definitiva para informações sobre campeonatos, partidas, artilheiros e classificações. Este aplicativo foi projetado para proporcionar uma experiência completa e imersiva para os fãs de futebol de todas as idades.
 
 ## Funcionalidades Principais
-
+### 0. Login e Cadastro
+Para uma melhor experiencia para usuario, você consegui criar uma conta gratuita para acessar o app, e consegue acessar a qualquer momento com a sua conta criada!
+ .
 ### 1. Lista de Campeonatos
 
 O aplicativo oferece uma ampla variedade de campeonatos de futebol de todo o mundo. Você pode explorar e escolher seus campeonatos favoritos para acompanhar.
@@ -69,6 +71,7 @@ Certifique-se de ter os seguintes pré-requisitos instalados em sua máquina:
   ### React-hook-form
   ### Yup
   ### Firebase
+  ### Async Storage
 
   ##### Os dados são consumidos através da api:
   [Clique aqui para acessar a api](https://www.football-data.org/)
