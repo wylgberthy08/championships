@@ -66,6 +66,9 @@ Certifique-se de ter os seguintes pré-requisitos instalados em sua máquina:
   ### React navigation
   ### Axios
   ### React-query
+  ### React-hook-form
+  ### Yup
+  ### Firebase
 
   ##### Os dados são consumidos através da api:
   [Clique aqui para acessar a api](https://www.football-data.org/)
