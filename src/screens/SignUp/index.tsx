@@ -28,16 +28,19 @@ type FormDataProps = {
 };
 
 const signUpSchema = yup.object({
-  name: yup.string().required("*Informe o nome."),
-  email: yup.string().required("*Informe o e-email.").email("E-mail invalido"),
+  name: yup.string().required("*Name is required."),
+  email: yup.string().required("**E-mail is required.").email("Invalid email"),
   password: yup
     .string()
-    .required("*Informe a senha.")
-    .min(6, "A senha deve ter pelo menos 6 digitos"),
+    .required("*Password is required.")
+    .min(6, "The password must have at least 6 digits."),
   confirm_password: yup
     .string()
-    .required("*Confirme a senha.")
-    .oneOf([yup.ref("password"), null], "A confirmação da senha não confere."),
+    .required("*Confirme password.")
+    .oneOf(
+      [yup.ref("password"), null],
+      "Password confirmation does not match."
+    ),
 });
 
 export function SignUp() {
